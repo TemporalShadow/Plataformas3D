@@ -221,5 +221,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 			}
 		}
-	}
+
+        // Set the jump Height
+        public void SetJumpHeight(float height)
+        {
+            m_JumpPower = height;
+        }
+    }
 }

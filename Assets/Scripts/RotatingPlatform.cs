@@ -7,9 +7,16 @@ public class RotatingPlatform : MonoBehaviour
     public Vector3 rotateVector;
     public float speed;
     private float stopstart = 1;
+    
+    [SerializeField]
+    private int tiempoRotar = 5;
+    [SerializeField]
+    private int tiempoPausar = 5;
+
 
     public bool endless = true;
     public float timeRotating = 10f, timePause = 5f;
+    private bool bRotar = true;
 
     //falta por rellenar:
     /*
@@ -24,14 +31,34 @@ public class RotatingPlatform : MonoBehaviour
     {
         rotateVector.Normalize();
 
-        
+        if(!endless)
+            StartCoroutine(rotar());
+
     }
 
     void Update()
-    {    
+    {
+        float angle = Time.deltaTime * speed * stopstart;
+        if(bRotar)
+            transform.Rotate(rotateVector * angle);
         // Rotar a la velocidad indicada
-        float angle = Time.deltaTime * speed* stopstart;
-        transform.Rotate(rotateVector * angle);
+
+    }
+
+    IEnumerator rotar()
+    {
+        
+        yield return new WaitForSeconds(tiempoRotar);
+        bRotar = false;
+        StartCoroutine(pausar());
     }
     
+    IEnumerator pausar()
+    {
+        
+        yield return new WaitForSeconds(tiempoPausar);
+        bRotar = true;
+        StartCoroutine(rotar());
+    }
+
 }

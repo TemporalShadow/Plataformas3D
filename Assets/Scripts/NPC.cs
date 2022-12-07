@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class KeyScript : MonoBehaviour
+public class NPC : MonoBehaviour
 {
-    public string puerta;
+
+    public Text Mision;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +21,10 @@ public class KeyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManagerScript gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
-        gameManager.command("NewSpawnPoint");
-        gameManager.command(puerta);
-        this.gameObject.SetActive(false);
+        if (other.tag == "Player")
+        {
+            Debug.Log("llegue");
+            Mision.enabled = true;
+        }
     }
-
 }

@@ -42,8 +42,20 @@ public class GameManagerScript : MonoBehaviour
             case "NewSpawnPoint":
                 setNewSpawnPoint();
                 break;
+            case "Verde":
+                mundoVerde.SetActive(true);
+                break;
             case "Azul":
                 mundoAzul.SetActive(true);
+                break;
+            case "Amarillo":
+                mundoAmarillo.SetActive(true);
+                break;
+            case "Rojo":
+                mundoRojo.SetActive(true);
+                break;
+            default:
+                Debug.Log("Opcion no encontrada.");
                 break;
         }
     }
